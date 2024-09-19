@@ -1,3 +1,6 @@
+#
+.vscode
+
 # Configs and keys
 ch07/02_dataset-utilities/config.json
 ch07/03_model-evaluation/config.json
