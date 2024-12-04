@@ -2,16 +2,18 @@ import torch
 
 # We are going to use the following sentence for our example:
 #
-# Your journey starts with one step 
+# Your journey starts with one step
 #
-# Sentence has been tokenized for us to save a step 
+# Sentence has been tokenized for us to save a step
 inputs = torch.tensor(
-  [[0.43, 0.15, 0.89], # Your     (x^1)
-   [0.55, 0.87, 0.66], # journey  (x^2)
-   [0.57, 0.85, 0.64], # starts   (x^3)
-   [0.22, 0.58, 0.33], # with     (x^4)
-   [0.77, 0.25, 0.10], # one      (x^5)
-   [0.05, 0.80, 0.55]] # step     (x^6)
+    [
+        [0.43, 0.15, 0.89],  # Your     (x^1)
+        [0.55, 0.87, 0.66],  # journey  (x^2)
+        [0.57, 0.85, 0.64],  # starts   (x^3)
+        [0.22, 0.58, 0.33],  # with     (x^4)
+        [0.77, 0.25, 0.10],  # one      (x^5)
+        [0.05, 0.80, 0.55],
+    ]  # step     (x^6)
 )
 
 # 2nd input token is the query
@@ -29,8 +31,8 @@ query = inputs[1]
 attn_scores_2 = torch.empty(inputs.shape[0])
 
 for i, x_i in enumerate(inputs):
-  # calculate dot product for every element
-  attn_scores_2[i] = torch.dot(x_i, query)
+    # calculate dot product for every element
+    attn_scores_2[i] = torch.dot(x_i, query)
 
 print(f"Attention Scores: {attn_scores_2}")
 
@@ -51,7 +53,6 @@ print(f"Attention Weights: {attn_weights_2}")
 context_vec_2 = torch.zeros(query.shape)
 
 for i, x_i in enumerate(inputs):
-  context_vec_2 += attn_weights_2[i] * x_i
+    context_vec_2 += attn_weights_2[i] * x_i
 
 print(f"Context Vector {context_vec_2}")
-
